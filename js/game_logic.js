@@ -352,29 +352,108 @@ function showLoopCompletion() {
     const nextLoop = getNextLoop();
     
     contentDisplay.innerHTML = `
-        <div class="completion-content">
-            <h3>🌱 Loop Complete: ${currentLoopName}</h3>
-            <p><strong>Your Final Score: ${totalScore} points</strong></p>
-            
-            <div class="belief-analysis">
-                <h4>Your Developmental Leanings:</h4>
-                <ul>
-                    <li>Nature Conviction: ${natureScore} points</li>
-                    <li>Nurture Conviction: ${nurtureScore} points</li>
-                </ul>
-            </div>
-            
-            <div class="journey-complete">
-                <h4>🧠 Developmental Exploration Complete!</h4>
-                <p>You have explored this stage of the nature vs nurture debate.</p>
-                <p>The Engine appreciates your thoughtful engagement with these developmental questions.</p>
-            </div>
-            
-            <div class="navigation-buttons" style="margin-top: 30px; text-align: center;">
-                <button onclick="window.location.href='index.html'" class="nav-button" style="margin: 10px; padding: 12px 24px; background: rgba(255,255,255,0.2); color: #2C3E50; border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; cursor: pointer;">← Return to Engine</button>
-                ${nextLoop ? `<button onclick="window.location.href='${nextLoop.file}'" class="nav-button" style="margin: 10px; padding: 12px 24px; background: linear-gradient(45deg, #FF6B9D, #4ECDC4); color: white; border: none; border-radius: 8px; cursor: pointer;">Next Loop: ${nextLoop.name} →</button>` : '<button onclick="window.location.href=\'index.html\'" class="nav-button" style="margin: 10px; padding: 12px 24px; background: linear-gradient(45deg, #FFD700, #FFA500); color: white; border: none; border-radius: 8px; cursor: pointer;">🎉 Journey Complete - Return to Engine →</button>'}
-            </div>
+    <style>
+    /* FRONTIER Hub Navigation Styles for Nature vs Nurture */
+    .completion-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin: 30px 0;
+        align-items: center;
+    }
+    
+    .begin-again-btn {
+        background: linear-gradient(45deg, #2E8B57, #FF6B9D);
+        color: #ffffff;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 25px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .begin-again-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(46, 139, 87, 0.4);
+    }
+    
+    .explore-all-loops {
+        display: inline-block;
+        background: linear-gradient(45deg, #d4af37, #ffd700);
+        color: #1a1a2e;
+        text-decoration: none;
+        padding: 15px 30px;
+        border-radius: 25px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+    
+    .explore-all-loops:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        text-decoration: none;
+        color: #1a1a2e;
+    }
+    
+    .frontier-motto {
+        margin-top: 30px;
+        padding: 20px;
+        background: rgba(212, 175, 55, 0.1);
+        border-radius: 15px;
+        border: 2px solid rgba(212, 175, 55, 0.3);
+    }
+    
+    .frontier-motto p {
+        color: #d4af37;
+        font-style: italic;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+    }
+    </style>
+    
+    <div class="completion-content">
+        <h3>🌱 Loop Complete: ${currentLoopName}</h3>
+        <p><strong>Your Final Score: ${totalScore} points</strong></p>
+        
+        <div class="belief-analysis">
+            <h4>Your Developmental Leanings:</h4>
+            <ul>
+                <li>Nature Conviction: ${natureScore} points</li>
+                <li>Nurture Conviction: ${nurtureScore} points</li>
+            </ul>
         </div>
+            
+      <div class="journey-complete">
+    <h4>🧠 Developmental Exploration Complete!</h4>
+    <p>You have explored this stage of the nature vs nurture debate.</p>
+    <p>The Engine appreciates your thoughtful engagement with these developmental questions.</p>
+</div>
+
+<div class="navigation-buttons" style="margin-top: 30px; text-align: center;">
+    <button onclick="window.location.href='index.html'" class="nav-button" style="margin: 10px; padding: 12px 24px; background: rgba(255,255,255,0.2); color: #2C3E50; border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; cursor: pointer;">← Return to Engine</button>
+    ${nextLoop ? `<button onclick="window.location.href='${nextLoop.file}'" class="nav-button" style="margin: 10px; padding: 12px 24px; background: linear-gradient(45deg, #FF6B9D, #4ECDC4); color: white; border: none; border-radius: 8px; cursor: pointer;">Next Loop: ${nextLoop.name} →</button>` : `
+    <div class="completion-actions">
+        <button onclick="window.location.href='index.html'" class="begin-again-btn">🔄 Explore Development Again</button>
+        <a href="https://unity-loops.com/hub" class="explore-all-loops">
+            🏛️ Explore All 6 Consciousness Loops
+        </a>
+    </div>
+    
+    <div class="frontier-motto">
+        <p>"It's Loops All the Way Down"</p>
+    </div>
+    `}
+</div>
     `;
     
     engineCommentary.innerHTML = `
