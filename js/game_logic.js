@@ -351,6 +351,10 @@ function showLoopCompletion() {
     const currentLoopName = getCurrentLoopName() + ': ' + getCurrentLoopTitle();
     const nextLoop = getNextLoop();
     
+    // FIXED: Check if this is actually the final loop before showing FRONTIER navigation
+    const currentTitle = document.title.toLowerCase();
+    const isTrueFinalLoop = currentTitle.includes('wisdom paradox');
+    
     contentDisplay.innerHTML = `
     <style>
     /* FRONTIER Hub Navigation Styles for Nature vs Nurture */
@@ -441,7 +445,8 @@ function showLoopCompletion() {
 
 <div class="navigation-buttons" style="margin-top: 30px; text-align: center;">
     <button onclick="window.location.href='index.html'" class="nav-button" style="margin: 10px; padding: 12px 24px; background: rgba(255,255,255,0.2); color: #2C3E50; border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; cursor: pointer;">← Return to Engine</button>
-    ${nextLoop ? `<button onclick="window.location.href='${nextLoop.file}'" class="nav-button" style="margin: 10px; padding: 12px 24px; background: linear-gradient(45deg, #FF6B9D, #4ECDC4); color: white; border: none; border-radius: 8px; cursor: pointer;">Next Loop: ${nextLoop.name} →</button>` : `
+    ${nextLoop ? `<button onclick="window.location.href='${nextLoop.file}'" class="nav-button" style="margin: 10px; padding: 12px 24px; background: linear-gradient(45deg, #FF6B9D, #4ECDC4); color: white; border: none; border-radius: 8px; cursor: pointer;">Next Loop: ${nextLoop.name} →</button>` : 
+    (isTrueFinalLoop ? `
     <div class="completion-actions">
         <button onclick="window.location.href='index.html'" class="begin-again-btn">🔄 Explore Development Again</button>
         <a href="https://unity-loops.com/hub" class="explore-all-loops">
@@ -450,9 +455,13 @@ function showLoopCompletion() {
     </div>
     
     <div class="frontier-motto">
-        <p>"It's Loops All the Way Down"</p>
+        <p>"It\'s Loops All the Way Down"</p>
     </div>
-    `}
+    ` : `
+    <div class="completion-actions">
+        <button onclick="window.location.href='index.html'" class="begin-again-btn">🔄 Explore This Stage Again</button>
+    </div>
+    `)}
 </div>
     `;
     
